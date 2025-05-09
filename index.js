@@ -16,11 +16,27 @@ app.get('/', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-  res.send(`<h1>Hello, About Page</h1>`)
+  fs.readFile('./pages/about.html', (err, data) => {
+    if (err) {
+      console.log("Error:", err)
+      res.send("<h1>Something went wrong</h1>")
+    } else {
+      res.write(data)
+      res.end()
+    }
+  })
 })
 
 app.get('/contact', (req, res) => {
-  res.send(`<h1>Hello, Contact Page</h1>`)
+  fs.readFile('./pages/contact.html', (err, data) => {
+    if (err) {
+      console.log("Error:", err)
+      res.send("<h1>Something went wrong</h1>")
+    } else {
+      res.write(data)
+      res.end()
+    }
+  })
 })
 
 app.listen(4000, () => {
